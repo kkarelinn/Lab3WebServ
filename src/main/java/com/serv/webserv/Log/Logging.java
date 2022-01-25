@@ -1,4 +1,4 @@
 package com.serv.webserv.Log;
 
-public @interface Loging {
+public @interface Logging {
 }

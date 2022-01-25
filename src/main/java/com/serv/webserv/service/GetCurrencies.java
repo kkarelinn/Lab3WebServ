@@ -1,8 +1,6 @@
 package com.serv.webserv.service;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.serv.webserv.Log.Loging;
+import com.serv.webserv.Log.Logging;
 import com.serv.webserv.model.Currency;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,9 +24,7 @@ public class GetCurrencies {
     public String sourceUrl;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-    @Loging
-    @JacksonXmlProperty(localName = "currency")
-    @JacksonXmlElementWrapper(useWrapping = false)
+    @Logging
     public List<Currency> getCourses() {
         List<Currency> list = new ArrayList<>();
         try {
