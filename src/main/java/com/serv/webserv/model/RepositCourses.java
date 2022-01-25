@@ -1,9 +1,5 @@
 package com.serv.webserv.model;
 
-
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.serv.webserv.Log.Logging;
 import com.serv.webserv.service.GetCurrencies;
 import org.springframework.stereotype.Component;
@@ -13,19 +9,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@JacksonXmlRootElement(localName = "exchanges")
-public class RepositCourse implements Reposit{
+public class RepositCourses implements Reposit{
 
-    @JacksonXmlProperty(localName = "currency")
-    @JacksonXmlElementWrapper(useWrapping = false)
-       private List<Currency> currencyList;
-
-
+    private List<Currency> currencyList;
     private final GetCurrencies getCurrencies;
 
-
     @Logging
-    public RepositCourse(GetCurrencies getCurrencies) {
+    public RepositCourses(GetCurrencies getCurrencies) {
         currencyList = new ArrayList<>();
         this.getCurrencies = getCurrencies;
         update();

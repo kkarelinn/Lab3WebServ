@@ -6,6 +6,5 @@ public interface Reposit {
 
     void updateCourses();
     List<Currency> getCourseList();
-    List<Currency> getCourseList( String val);
-  //  double getCourse(String val);
+    List<Currency> getCourseList(String val);
 }

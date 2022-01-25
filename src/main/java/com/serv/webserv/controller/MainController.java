@@ -1,31 +1,32 @@
 package com.serv.webserv.controller;
 
 import com.serv.webserv.Log.Logging;
-import com.serv.webserv.model.Currency;
+import com.serv.webserv.model.AnswerXML;
 import com.serv.webserv.model.Reposit;
-import com.serv.webserv.model.RepositCourse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import com.serv.webserv.model.RepositCourses;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 @Logging
 @RestController
-    @RequestMapping("/")
+    @RequestMapping(value = "/", produces = MediaType.APPLICATION_XML_VALUE)
     public class MainController {
-       private final  Reposit reposit;
+       private final Reposit reposit;
+       private final AnswerXML answerXML;
 
-
-        public MainController(RepositCourse reposit) {
+        public MainController(RepositCourses reposit, AnswerXML answerXML) {
             this.reposit = reposit;
+            this.answerXML = answerXML;
         }
 
-        @GetMapping(value = "/currency")
-        public List<Currency> getAll(@RequestParam(defaultValue = "all") String valCode) {
-            if (!"all".equals(valCode)) return reposit.getCourseList(valCode);
-            return reposit.getCourseList();
-        }
+    @GetMapping(value = "/currency")
+    public AnswerXML getCur(@RequestParam(required = false) String code) {
+
+        if (code == null) answerXML.setRespList(reposit.getCourseList());
+        else answerXML.setRespList(reposit.getCourseList(code));
+        return (answerXML.getRespList().size() < 1) ? null : answerXML;
+    }
 
 }
+
+

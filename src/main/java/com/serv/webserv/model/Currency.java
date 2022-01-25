@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Component
-@JacksonXmlRootElement(localName = "currency")
+//@JacksonXmlRootElement(localName = "currency")
 public class Currency {
 
     @JacksonXmlProperty(localName = "txt")
@@ -22,6 +22,16 @@ public class Currency {
 
 
     public Currency() {
+    }
+
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "name='" + name + '\'' +
+                ", rate=" + rate +
+                ", code='" + code + '\'' +
+                ", localDate=" + localDate +
+                '}';
     }
 
     @Override
