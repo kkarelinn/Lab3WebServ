@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
     @GetMapping(value = "/currency")
     public AnswerXML getCur(@RequestParam(required = false) String code) {
-
+        System.out.println("\n...receiving request and work...\n");
         if (code == null) answerXML.setRespList(reposit.getCourseList());
         else answerXML.setRespList(reposit.getCourseList(code));
         return (answerXML.getRespList().size() < 1) ? null : answerXML;
